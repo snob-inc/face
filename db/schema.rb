@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_172533) do
+ActiveRecord::Schema.define(version: 2020_04_21_174609) do
 
   create_table "breadcrumb_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 2020_04_21_172533) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "breadcrumbs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "breadcrumb_master_id", null: false
+    t.bigint "user_id", null: false
+    t.string "content", null: false
+    t.integer "content_status", limit: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["breadcrumb_master_id"], name: "index_breadcrumbs_on_breadcrumb_master_id"
+    t.index ["user_id"], name: "index_breadcrumbs_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -35,4 +46,6 @@ ActiveRecord::Schema.define(version: 2020_04_21_172533) do
   end
 
   add_foreign_key "breadcrumb_categories", "breadcrumb_masters"
+  add_foreign_key "breadcrumbs", "breadcrumb_masters"
+  add_foreign_key "breadcrumbs", "users"
 end
