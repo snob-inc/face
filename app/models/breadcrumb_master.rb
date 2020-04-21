@@ -1,0 +1,2 @@
+class BreadcrumbMaster < ApplicationRecord
+end
