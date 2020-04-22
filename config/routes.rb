@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  get 'breadcrumbs/new'
+  resources :breadcrumbs
+  root 'breadcrumbs#new'
 end
