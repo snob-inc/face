@@ -1,0 +1,12 @@
+h1 Users#new
+p Find me in app/views/users/new.html.slim
+= form_for @user do |f|
+  = f.label :name, 'ユーザー名'
+  = f.text_field :name, placeholder: '30文字以内で入力してください'
+  = f.label :email, 'メールアドレス'
+  = f.email_field :email, placeholder: '必須入力'
+  = f.label :password, 'パスワード'
+  = f.password_field :password, placeholder: '72文字以内で入力してください'
+  = f.label :password_confirmation, 'パスワード確認用'
+  = f.password_field :password_confirmation, placeholder: '72文字以内で入力してください'
+  = f.submit 'ユーザー登録'
