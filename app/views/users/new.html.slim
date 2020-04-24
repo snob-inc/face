@@ -1,6 +1,7 @@
 h1 Users#new
 p Find me in app/views/users/new.html.slim
 = form_for @user do |f|
+  = render partial: "template/validation_error", locals: { errors: @user.errors }
   = f.label :name, 'ユーザー名'
   = f.text_field :name, placeholder: '30文字以内で入力してください'
   = f.label :email, 'メールアドレス'
