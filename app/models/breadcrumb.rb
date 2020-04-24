@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Breadcrumb < ApplicationRecord
   belongs_to :breadcrumb_master
   belongs_to :user
