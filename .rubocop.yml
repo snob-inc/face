@@ -2,7 +2,12 @@ inherit_gem:
   rubocop-github:
     - config/default_edge.yml
     - config/rails_edge.yml
+
 Documentation:
   Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+AsciiComments:
+ Enabled: false
