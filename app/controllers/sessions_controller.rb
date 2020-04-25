@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    is_auth = user.authenticate(params[:session][:password])
-    if user && is_auth
+    if user&.authenticate(params[:session][:password])
       sign_in user
       flash[:notice] = "サインインしました"
       redirect_to root_path
