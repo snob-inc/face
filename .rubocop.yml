@@ -4,3 +4,5 @@ inherit_gem:
     - config/rails_edge.yml
 Documentation:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
