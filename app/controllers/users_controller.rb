@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_user_params)
     if @user.save
-      redirect_to root_path
+      redirect_to signin_path
     else
-      render "users/new"
+      render :new
     end
   end
 
