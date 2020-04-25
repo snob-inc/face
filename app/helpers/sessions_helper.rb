@@ -1,5 +1,4 @@
 module SessionsHelper
-
   # サインイン時に取得したuser_idをsessionに入れる
   def sign_in(user)
     session[:user_id] = user.id
