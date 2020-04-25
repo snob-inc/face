@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -8,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(create_user_params)
     if @user.save
-      redirect_to root_path
+      redirect_to signin_path
     else
       render "users/new"
     end

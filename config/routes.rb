@@ -1,8 +1,10 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   resources :breadcrumbs
-  resource :users
-  resource :sessions, only: %i[new create destroy]
+  resource :users, except: %i[new]
+  get "/signup", to: "users#new"
+  post "/signup", to: "users#create"
+  get "/signin", to: "sessions#new"
+  post "/signin", to: "sessions#create"
+  delete "/signout", to: "sessions#destroy"
   root "breadcrumbs#new"
 end
