@@ -10,4 +10,4 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 AsciiComments:
- Enabled: false
+  Enabled: false
