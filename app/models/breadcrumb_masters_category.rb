@@ -1,0 +1,2 @@
+class BreadcrumbMastersCategory < ApplicationRecord
+end
