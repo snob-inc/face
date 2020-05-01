@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_191915) do
+ActiveRecord::Schema.define(version: 2020_04_26_172236) do
 
   create_table "breadcrumb_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "breadcrumb_master_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["breadcrumb_master_id"], name: "index_breadcrumb_categories_on_breadcrumb_master_id"
   end
 
   create_table "breadcrumb_masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -26,11 +24,20 @@ ActiveRecord::Schema.define(version: 2020_04_24_191915) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "breadcrumb_masters_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "breadcrumb_master_id"
+    t.bigint "breadcrumb_category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["breadcrumb_category_id"], name: "index_breadcrumb_masters_categories_on_breadcrumb_category_id"
+    t.index ["breadcrumb_master_id"], name: "index_breadcrumb_masters_categories_on_breadcrumb_master_id"
+  end
+
   create_table "breadcrumbs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "breadcrumb_master_id", null: false
     t.bigint "user_id", null: false
     t.string "content", null: false
-    t.integer "content_status", limit: 1
+    t.integer "content_status", limit: 1, default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["breadcrumb_master_id"], name: "index_breadcrumbs_on_breadcrumb_master_id"
@@ -47,7 +54,8 @@ ActiveRecord::Schema.define(version: 2020_04_24_191915) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
-  add_foreign_key "breadcrumb_categories", "breadcrumb_masters"
+  add_foreign_key "breadcrumb_masters_categories", "breadcrumb_categories"
+  add_foreign_key "breadcrumb_masters_categories", "breadcrumb_masters"
   add_foreign_key "breadcrumbs", "breadcrumb_masters"
   add_foreign_key "breadcrumbs", "users"
 end

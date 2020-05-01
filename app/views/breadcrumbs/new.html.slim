@@ -1,3 +1,9 @@
 h1 Json-LD構造化抽出フォーム
-- if signed_in?
-  = current_user.name
+= form_for @breadcrumbs, url: "/" do |f|
+  = render partial: "template/validation_error", locals: { errors: @breadcrumbs.errors }
+  - @breadcrumb_masters.each do |breadcrumb_master|
+    = fields_for "breadcrumbs[]" do |ff|
+      = ff.hidden_field :breadcrumb_master_id, value: breadcrumb_master.id
+      = ff.label :content, breadcrumb_master.content
+      = ff.text_field :content
+  = f.submit 'Jsonを出力する'
