@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :breadcrumbs
+  has_many :breadcrumbs, dependent: :delete_all
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
