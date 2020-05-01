@@ -22,6 +22,7 @@ end
 
 group :development do
   gem "listen", ">= 3.0.5", "< 3.2"
+  gem "pry-rails"
   gem "rubocop", require: false
   gem "rubocop-github"
   gem "rubocop-performance", require: false
@@ -29,7 +30,6 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", ">= 3.3.0"
-  gem 'pry-rails'
 end
 
 group :test do
