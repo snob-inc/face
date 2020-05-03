@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_172236) do
+ActiveRecord::Schema.define(version: 2020_04_26_144416) do
 
   create_table "breadcrumb_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_172236) do
     t.bigint "breadcrumb_master_id", null: false
     t.bigint "user_id", null: false
     t.string "content", null: false
-    t.integer "content_status", limit: 1, default: 1
+    t.integer "content_status", limit: 1, default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["breadcrumb_master_id"], name: "index_breadcrumbs_on_breadcrumb_master_id"

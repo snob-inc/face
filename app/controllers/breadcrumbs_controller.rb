@@ -19,7 +19,8 @@ class BreadcrumbsController < ApplicationController
                    end
 
     breadcrumbs = @breadcrumbs.map do |breadcrumb|
-      # insert_allは時間を補完してくれないため
+      # insert_allは時間を補完しない Enumを適用してくれないため
+      breadcrumb["content_status"] = 0
       breadcrumb["created_at"] = Time.zone.now
       breadcrumb["updated_at"] = Time.zone.now
       breadcrumb.attributes
