@@ -4,7 +4,7 @@ class CreateBreadcrumbs < ActiveRecord::Migration[6.0]
       t.references :breadcrumb_master, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
       t.string :content, null: false
-      t.integer :content_status, null: false, limit: 1
+      t.integer :content_status, null: false, limit: 1, default: 0
 
       t.timestamps
     end
