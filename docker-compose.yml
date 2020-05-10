@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: "Dockerfile.dev"
+    volumes:
+      - ./:/app:cached
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
+    ports:
+      - "3000:3000"
+    environment:
+      - HOST=db
+      - USER=root
+      - DATABASE=face_development
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+    networks:
+      - face_default
+  db:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - ./config/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: face_development
+      MYSQL_USER: root
+    ports:
+      - "3306:3306"
+networks:
+  face_default:
+    external: true

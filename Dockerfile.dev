@@ -1,0 +1,14 @@
+FROM node:13.13.0-alpine as node
+
+FROM ruby:2.7.0-alpine
+WORKDIR /app
+COPY . /app
+COPY --from=node /opt/yarn-* /opt/yarn
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+RUN apk update --no-cache && \
+    apk add gmp-dev tzdata libxml2-dev curl-dev make gcc libc-dev g++ mariadb-dev && \
+    ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn && \
+    ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg && \
+    yarn install && \
+    bundle install
+CMD ["rails", "server", "-b", "0.0.0.0"]
