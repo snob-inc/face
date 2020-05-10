@@ -12,19 +12,19 @@
 
 ActiveRecord::Schema.define(version: 2020_04_26_144416) do
 
-  create_table "breadcrumb_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "breadcrumb_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "breadcrumb_masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "breadcrumb_masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "breadcrumb_masters_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "breadcrumb_masters_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "breadcrumb_master_id"
     t.bigint "breadcrumb_category_id"
     t.datetime "created_at", precision: 6, null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_144416) do
     t.index ["breadcrumb_master_id"], name: "index_breadcrumb_masters_categories_on_breadcrumb_master_id"
   end
 
-  create_table "breadcrumbs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "breadcrumbs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "breadcrumb_master_id", null: false
     t.bigint "user_id", null: false
     t.string "content", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_144416) do
     t.index ["user_id"], name: "index_breadcrumbs_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "password_digest", null: false
